@@ -1,11 +1,11 @@
 #include "new_shell.h"
 
 /**
- * The main entry point of the program.
+ * main - The main entry point of the program.
  *
- * @param ac The argument count.
- * @param av The argument vector.
- * @return   0 on success, 1 on error.
+ * @ac: The argument count.
+ * @av: The argument vector.
+ * @return: 0 on success, 1 on error.
  */
 int main(int ac, char **av)
 {
