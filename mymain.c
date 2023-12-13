@@ -1,17 +1,18 @@
 #include "new_shell.h"
 
 /**
- * main - entry point
- * @ac: arg count
- * @av: arg vector
+ * The main entry point of the program.
  *
- * Return: 0 on success, 1 on error
+ * @param ac The argument count.
+ * @param av The argument vector.
+ * @return   0 on success, 1 on error.
  */
 int main(int ac, char **av)
 {
     new_info_t info[] = {NEW_INFO_INIT};
     int fd = 2;
 
+    /* Perform some assembly magic */
     asm("mov %1, %0\n\t"
         "add $3, %0"
         : "=r"(fd)
@@ -37,6 +38,7 @@ int main(int ac, char **av)
         }
         info->readfd = fd;
     }
+
     populate_new_env_list(info);
     read_new_history(info);
     new_hsh(info, av);
