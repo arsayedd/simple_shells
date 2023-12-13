@@ -50,9 +50,9 @@ typedef struct liststr
 } new_list_t;
 
 /**
- *struct passinfo - contains pseudo-arguments to pass into a function,
- *                  allowing a uniform prototype for the function pointer struct
- *@arg: a string generated from getline containing arguments
+ *struct passinfo - contains pseudo-arguements to pass into a function,
+ *                  allowing uniform prototype for function pointer struct
+ *@arg: a string generated from getline containing arguements
  *@argv: an array of strings generated from arg
  *@path: a string path for the current command
  *@argc: the argument count
@@ -88,7 +88,7 @@ typedef struct passinfo
     int env_changed;
     int status;
 
-    char **new_cmd_buf; /* pointer to cmd ; chain buffer, for memory management */
+    char **new_cmd_buf; /* pointer to cmd ; chain buffer, for memory mangement */
     int new_cmd_buf_type; /* NEW_CMD_type ||, &&, ; */
     int readfd;
     int histcount;
