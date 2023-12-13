@@ -19,10 +19,9 @@ char *name;
 alias_t *aliases;
 
 /* signals and processes */
-void signal_handler(int);
-
+void custom_signal_handler(int fildes);
 /* helpers for user inputs */
-char *get_user_input();
+char *custom_get_user_input(void);
 
 /* helpers errors handling */
 /* 0: readline_error */
