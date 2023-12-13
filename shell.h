@@ -26,7 +26,7 @@ char *get_user_input();
 
 /* helpers errors handling */
 /* 0: readline_error */
-void readline_error(void);
+void custom_readline_error(void);
 
 void (*handle_error[])(void) = {
     readline_error
