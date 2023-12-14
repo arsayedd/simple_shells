@@ -16,7 +16,8 @@
 #define PATH_SIZE 1024
 #define ARG_SIZE 200
 
-typedef struct ShellInfo {
+typedef struct ShellInfo
+{
     int status;
 } ShellInfo;
 
