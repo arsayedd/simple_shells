@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- * pt_all_alias - pt all alias
+ * print_All_Alias - print all alias
  *
  * Return: 0 on success, 1 on failure
  * Authors: Ahmed Raafat & Ahmed Abdelanasser
  */
-int pt_all_alias(void)
+int print_All_Alias(void)
 {
 	int i = 0;
 	char **alias_lisr = Alias_list;

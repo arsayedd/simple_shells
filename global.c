@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- * buffers - update buffers with new values
- * @all_str: pointer to all_strings to be set (char **)
- * @c_command: pointer to current_command to be set (char **)
+ * buffers - set buffers to new values
+ * @all_str: pointer to all_str to be set (char **)
+ * @c_command: pointer to c_command to be set (char **)
  * @state: state of buffers (int)
  * Return: void
-* Authors: Ahmed Raafat & Ahmed Abdelanasser
+ * Authors: Ahmed Raafat & Ahmed Abdelanasser
  */
 void buffers(char **all_str, char **c_command, int state)
 {
@@ -24,11 +24,11 @@ void buffers(char **all_str, char **c_command, int state)
 	}
 }
 /**
- * _enviornment - update environment with new values (char ***)
- * @envp: pointer to environment to be set (char **)
+ * _enviornment - set enviornment to new values (char ***)
+ * @envp: pointer to envp to be set (char **)
  * @state: state of enviornment (int)
- * Return: pointer to modified environment (char ***)
-* Authors: Ahmed Raafat & Ahmed Abdelanasser
+ * Return: pointer to enviornment (char ***)
+ * Authors: Ahmed Raafat & Ahmed Abdelanasser
  */
 char ***_enviornment(char **envp, int state)
 {
@@ -40,15 +40,15 @@ char ***_enviornment(char **envp, int state)
 	}
 	if (!state)
 	{
-		free_args(enviornment);
+		arguments_free(enviornment);
 	}
 	return (&enviornment);
 }
 /**
- * _state - update state with new values (int)
+ * _state - set state to new values (int)
  * @c_state: state to be set (int)
- * Return: updated state (int)
-* Authors: Ahmed Raafat & Ahmed Abdelanasser
+ * Return: state (int)
+ * Authors: Ahmed Raafat & Ahmed Abdelanasser
  */
 int _state(int c_state)
 {
@@ -65,11 +65,11 @@ int _state(int c_state)
 	}
 }
 /**
- * _alias - establish alias with new values (char **)
+ * _alias - set alias to new values (char **)
  * @alias_arg: alias to be set (char *)
  * @state: state of alias (int)
- * Return: pointer to defined alias (char **)
-* Authors: Ahmed Raafat & Ahmed Abdelanasser
+ * Return: pointer to alias (char **)
+ * Authors: Ahmed Raafat & Ahmed Abdelanasser
  */
 char **_alias(char *alias_arg, int state)
 {
@@ -84,12 +84,12 @@ char **_alias(char *alias_arg, int state)
 		while (alias_arg[i] && alias_arg[i] != '=')
 			i++;
 		temp = _malloc(i + 1);
-		_memcpy(temp, alias_arg, i);
+		_memcopy(temp, alias_arg, i);
 		temp[i] = '\0';
-		value = gt_alias_value(temp);
+		value = get_alias_value(temp);
 		if (value)
 		{
-			i = gt_alias_ind(temp);
+			i = get_alias_index(temp);
 			_Free(alias_list[i]);
 			alias_list[i] = _strdup(alias_arg);
 			_Free(value);
@@ -105,6 +105,6 @@ char **_alias(char *alias_arg, int state)
 	{
 		return (alias_list);
 	}
-	free_args(alias_list);
+	arguments_free(alias_list);
 	return (NULL);
 }

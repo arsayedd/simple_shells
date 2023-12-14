@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- * hand_alias - process alias command (char **)
- * @arguments: arguments for alias command (char **)
+ * handle_alias - handle alias command (char **)
+ * @arguments: arguments to handle alias command (char **)
  * Return: 0 on success, 1 on failure
  * Authors: Ahmed Raafat & Ahmed Abdelanasser
  */
-int hand_alias(char **arguments)
+int handle_alias(char **arguments)
 {
 	int state = 0;
 	int i = 0;
@@ -20,23 +20,23 @@ int hand_alias(char **arguments)
 			}
 			else
 			{
-				state = pt_one_alias(arguments[i]);
+				state = print_one_Alias(arguments[i]);
 			}
 	}
 	else
 	{
-		state = pt_all_alias();
+		state = print_All_Alias();
 	}
-	free_args(arguments);
+	arguments_free(arguments);
 	return (state);
 }
 /**
- * pt_one_alias - print a single alias
+ * print_one_Alias - print one alias
  * @key: key to print (char *)
  * Return: 0 on success, 1 on failure
  * Authors: Ahmed Raafat & Ahmed Abdelanasser
  */
-int pt_one_alias(char *key)
+int print_one_Alias(char *key)
 {
 
 	int i = 0;
@@ -60,12 +60,12 @@ int pt_one_alias(char *key)
 	return (0);
 }
 /**
- * gt_alias_value - obtain value of alias
+ * get_alias_value - get value of alias
  * @key: key to get value of (char *)
  * Return: value of alias (char *)
  * Authors: Ahmed Raafat & Ahmed Abdelanasser
  */
-char *gt_alias_value(char *key)
+char *get_alias_value(char *key)
 {
 	char *path = NULL;
 	char *cur_env = NULL;
@@ -95,12 +95,12 @@ char *gt_alias_value(char *key)
 	return (value);
 }
 /**
- * gt_alias_ind - determine index of alias
- * @key: key to find the index of (char *)
- * Return: index of the alias (int)
+ * get_alias_index - get index of alias
+ * @key: key to get index of (char *)
+ * Return: index of alias (int)
  * Authors: Ahmed Raafat & Ahmed Abdelanasser
  */
-int gt_alias_ind(char *key)
+int get_alias_index(char *key)
 {
 	char *path = NULL;
 	char *cur_env = NULL;
@@ -128,13 +128,13 @@ int gt_alias_ind(char *key)
 	return (-1);
 }
 /**
- * alias_change - change alias in command
+ * alias_replace - replace alias in command
  * @str_ptr: pointer to command (char **)
  * @str_size: pointer to size of command (int *)
  * Return: void
  * Authors: Ahmed Raafat & Ahmed Abdelanasser
  */
-void alias_change(char **str_ptr, int *str_size)
+void alias_replace(char **str_ptr, int *str_size)
 {
 	int i = 0;
 	char *temp = _malloc(*str_size);
@@ -146,9 +146,9 @@ void alias_change(char **str_ptr, int *str_size)
 		i = 0;
 		while (str[i] && str[i] != ' ')
 			i++;
-		_memcpy(temp, str, i);
+		_memcopy(temp, str, i);
 		temp[i] = '\0';
-		value = gt_alias_value(temp);
+		value = get_alias_value(temp);
 		if (value)
 		{
 			str = replaceTxtInd(str_ptr, value, 0, i - 1);

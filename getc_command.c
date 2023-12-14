@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- * getc_command - extract command from user input
+ * getc_command - get command from user input (char *)
  * @str: user input (char *)
- * @c_command: pointer to extracted command (char **)
- * @cmd_size: pointer to size of extracted command (int *)
+ * @c_command: pointer to command to be returned (char **)
+ * @cmd_size: pointer to size of command to be returned (int *)
  * Return: void
-* Authors: Ahmed Raafat & Ahmed Abdelanasser
+ * Authors: Ahmed Raafat & Ahmed Abdelanasser
  */
 void getc_command(char *str, char **c_command, int *cmd_size)
 {
@@ -31,7 +31,7 @@ void getc_command(char *str, char **c_command, int *cmd_size)
 				i++;
 			}
 		}
-		else if (str[i] == ' ' && !lst_space(str + i))
+		else if (str[i] == ' ' && !last_space(str + i))
 			break;
 
 		else if (str[i] == ' ' && str[i + 1] == ' ')
@@ -40,19 +40,19 @@ void getc_command(char *str, char **c_command, int *cmd_size)
 			continue;
 		}
 		else
-			gets_comm_help(str, c_command, cmd_size, &i, &j);
+			getc_command_helper(str, c_command, cmd_size, &i, &j);
 	}
 	(*c_command)[j] = '\0';
-	alias_change(c_command, cmd_size);
-	edit_comm(c_command, cmd_size);
+	alias_replace(c_command, cmd_size);
+	edit_command(c_command, cmd_size);
 }
 /**
- * lst_space - verify if the last character in a string is a space
- * @str: string to examine (char *)
- * Return: (1) if the last character is a space, (0) otherwise (int)
-* Authors: Ahmed Raafat & Ahmed Abdelanasser
+ * last_space - check if last char in string is space
+ * @str: string to check (char *)
+ * Return: (1) if last char in string is space, (0) others (int)
+ * Authors: Ahmed Raafat & Ahmed Abdelanasser
  */
-int lst_space(char *str)
+int last_space(char *str)
 {
 	int i = 0;
 
@@ -64,16 +64,16 @@ int lst_space(char *str)
 	return (0);
 }
 /**
- * gets_comm_help - auxiliary function for extracting command
+ * getc_command_helper - helper function for getc_command
  * @str: user input (char *)
- * @c_command: pointer to extracted command (char **)
- * @cmd_size: pointer to size of extracted command (int *)
+ * @c_command: pointer to command to be returned (char **)
+ * @cmd_size: pointer to size of command to be returned (int *)
  * @i: pointer to index of user input (int *)
- * @j: pointer to index of extracted command (int *)
+ * @j: pointer to index of command to be returned (int *)
  * Return: void
-* Authors: Ahmed Raafat & Ahmed Abdelanasser
+ * Authors: Ahmed Raafat & Ahmed Abdelanasser
  */
-void gets_comm_help(char *str, char **c_command,
+void getc_command_helper(char *str, char **c_command,
 						 int *cmd_size, int *i, int *j)
 {
 	if (*j < *cmd_size - 2)
@@ -91,13 +91,13 @@ void gets_comm_help(char *str, char **c_command,
 	}
 }
 /**
- * edit_comm - adjust command to replace $$, $?, and $<env>
- * @str_ptr: pointer to command to be adjusted (char **)
- * @str_size: pointer to size of command to be adjusted (int *)
+ * edit_command - edit command to replace $$, $?, and $<env>
+ * @str_ptr: pointer to command to be edited (char **)
+ * @str_size: pointer to size of command to be edited (int *)
  * Return: void
-* Authors: Ahmed Raafat & Ahmed Abdelanasser
+ * Authors: Ahmed Raafat & Ahmed Abdelanasser
  */
-void edit_comm(char **str_ptr, int *str_size)
+void edit_command(char **str_ptr, int *str_size)
 {
 	int i = 0;
 	int temp_size = *str_size;
@@ -127,7 +127,7 @@ void edit_comm(char **str_ptr, int *str_size)
 		else if (str[i] == '$' && str[i + 1] != '$' &&
 				 str[i + 1] != ' ' && str[i + 1])
 		{
-			edit_comm_helper(str_ptr, &str, temp, &i);
+			edit_command_helper(str_ptr, &str, temp, &i);
 		}
 		else if (str[i] == '#')
 		{
@@ -139,15 +139,15 @@ void edit_comm(char **str_ptr, int *str_size)
 	_Free(temp);
 }
 /**
- * edit_comm_helper - auxiliary function for adjusting command with $<env>
- * @str_ptr: pointer to command to be adjusted (char **) (copy of str)
- * @str: pointer to command to be adjusted (char *) (copy of str_ptr)
- * @temp: pointer to temporary string (char *) for editing
- * @index: pointer to index of command to be adjusted (int *) (copy of index)
- * Return: void (adjusted command is returned through command_ptr)
-* Authors: Ahmed Raafat & Ahmed Abdelanasser
+ * edit_command_helper - helper function for edit_command to replace $<env>
+ * @str_ptr: pointer to command to be edited (char **) (copy of str)
+ * @str: pointer to command to be edited (char *) (copy of str_ptr)
+ * @temp: pointer to temp string (char *) to be used in editing
+ * @index: pointer to index of command to be edited (int *) (copy of i)
+ * Return: void (edited command is returned through str_ptr)
+ * Authors: Ahmed Raafat & Ahmed Abdelanasser
  */
-void edit_comm_helper(char **str_ptr,
+void edit_command_helper(char **str_ptr,
 						 char **str, char *temp, int *index)
 {
 	char *value;
@@ -155,9 +155,9 @@ void edit_comm_helper(char **str_ptr,
 
 	while ((*str)[i + j] && (*str)[i + j] != ' ')
 		j++;
-	_memcpy(temp, (*str) + i + 1, j - 1);
+	_memcopy(temp, (*str) + i + 1, j - 1);
 	temp[j - 1] = '\0';
-	value = get_envs_val(temp);
+	value = get_env_value(temp);
 	if (value)
 	{
 		*str = replaceTxtInd(str_ptr, value, i, i + j - 1);
