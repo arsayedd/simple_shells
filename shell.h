@@ -16,7 +16,7 @@
 #define PATH_SIZE 1024
 #define ARG_SIZE 200
 
-typedef struct {
+typedef struct ShellInfo {
     int status;
 } ShellInfo;
 
@@ -119,3 +119,4 @@ void intToString(int num, char *str, int strSize);
 void printError(const char *command, char *argv);
 
 #endif
+
