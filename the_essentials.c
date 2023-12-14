@@ -52,7 +52,7 @@ _Free(ptr);
 return (NULL);
 }
 temp = _malloc(new_size);
-_memcopy(temp, ptr, _strlen(ptr));
+_memecopy(temp, ptr, _strlen(ptr));
 _Free(ptr);
 return (temp);
 }
