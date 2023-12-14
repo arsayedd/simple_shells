@@ -71,7 +71,7 @@ int remove_read_spaces(char *str);
 void _free(void **ptr);
 char ***_environment(char **envp, int state);
 int _state(int c_state);
-char *replace_text_index(char **str1, char *str2, int start_index, int end_index);
+char *replace_tx_ind(char **str1, char *str2, int start_index, int end_index);
 int file_size(char *fname);
 int last_space(char *str);
 char **_alias(char *alias_arg, int state);
@@ -85,11 +85,10 @@ void print(int fd, ...);
 void *_malloc(unsigned int size);
 int _read(int fd, char *str, int str_size);
 void remove_read_spaces_helper(char *str, int str_size);
-void get_command_helper(char *str, char **c_command, int *cmd_size, int *i, int *j);
+void get_c_helper(char *str, char **c_command, int *cmd_size, int *i, int *j);
 void edit_command_helper(char **str_ptr, char **str, char *temp, int *index);
 int handle_command_helper(char *first_segment, char **arguments, char c);
 void check_file_mode(char *filename, int *fd, int *active_mode);
 void shell_core(char *symbol, int fd, int active_mode);
-int handle_cd_helper(char **arguments, char **pwd, char **oldpwd, char *cd, char *cwd);
-
+int hand_cd(char **arguments, char **pwd, char **oldpwd, char *cd, char *cwd);
 #endif
