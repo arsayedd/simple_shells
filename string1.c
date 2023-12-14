@@ -8,16 +8,16 @@
 char *s_strdup(const char *string)
 {
 	if (string == NULL)
-		return NULL;
+		return (NULL);
 
 	int len = s_strlen(string);
 	char *copy = malloc(len + 1);
 
 	if (copy == NULL)
-		return NULL;
+		return (NULL);
 
 	s_strcpy(copy, string);
-	return copy;
+	return (copy);
 }
 
 /**
@@ -32,7 +32,7 @@ int s_strlen(const char *string)
 	while (string[index] != '\0')
 		index++;
 
-	return index;
+	return (index);
 }
 
 /**
@@ -52,7 +52,7 @@ int s_strcspn(const char *string, const char *chr)
 		while (chr[charindex] != '\0')
 		{
 			if (string[index] == chr[charindex])
-				return index;
+				return (index);
 
 			charindex++;
 		}
@@ -60,7 +60,7 @@ int s_strcspn(const char *string, const char *chr)
 		index++;
 	}
 
-	return index;
+	return (index);
 }
 
 /**
@@ -79,5 +79,5 @@ char *s_strcpy(char *dest_string, const char *src_string)
 	}
 
 	*dest_string = '\0';
-	return dest_string;
+	return (dest_string);
 }
