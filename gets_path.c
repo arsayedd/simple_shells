@@ -7,6 +7,7 @@
 * Description: This function is not portable and will only work on Linux.
 * by Ahmed Raafat & Ahmed Abdelnasser
 */
+
 char *get_path(char *envp[])
 {
 char *path = "PATH=";
@@ -33,29 +34,29 @@ return (NULL);
 * Return: Pointer to the path if found, otherwise NULL
 * by Ahmed Raafat & Ahmed Abdelnasser
 */
+
 char *find_path(char *path_i, char *input)
 {
-char *path, *chunk = NULL;
+char *path, *chank = NULL;
 
 if (path_i)
 {
 path = _strdup(path_i);
-chunk = _strtok(path, ":");
+chank = _strtok(path, ":");
 }
 else
 {
 return (NULL);
 }
-
-while (chunk != NULL && *path_i)
+while (chank != NULL && *path_i)
 {
-size_t buffer_size = _strlen(chunk) + 1 + _strlen(input) + 1;
+size_t buffer_size = _strlen(chank) + 1 + _strlen(input) + 1;
 char *buffer = _malloc(buffer_size);
 int i = 0, j = 0, x = 0;
 
-while (chunk[j])
+while (chank[j])
 {
-buffer[i] = chunk[j];
+buffer[i] = chank[j];
 i++, j++;
 }
 buffer[i] = '/';
@@ -66,15 +67,13 @@ buffer[i] = input[x];
 i++, x++;
 }
 buffer[i] = '\0';
-
 if (access(buffer, X_OK) == 0)
 {
 free(path);
 return (buffer);
 }
-
 free(buffer);
-chunk = _strtok(NULL, ":");
+chank = _strtok(NULL, ":");
 }
 free(path);
 return (NULL);
