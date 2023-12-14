@@ -15,23 +15,23 @@
 #define ALIAS_LIST _alias(NULL, 1)
 #define STATE _state(GET_STATE)
 #define FREE(a) (_free((void *)&(a)))
-extern char **envi;
-int *_stchr(const char *str, int c);
-char *_strttok(char *str, const char *delimiters);
-char *_strttok2(char *str, const char *delimiters);
-int _strllen(char *p_string);
-char *_strddup(char *p_string);
-char *_strccpy(char *copy_to, char *copy_from);
-int _strccmp(char *string1, char *string2);
+extern char **environ;
+int *_strchr(const char *str, int c);
+char *_strtok(char *str, const char *delimiters);
+char *_strtok2(char *str, const char *delimiters);
+int _strlen(char *p_string);
+char *_strdup(char *p_string);
+char *_strcpy(char *copy_to, char *copy_from);
+int _strcmp(char *string1, char *string2);
 int _atoi(char *string);
-char *_strccat(char *s1, char *s2);
-void *_memecopy(char *copy_to, const char *copy_from, size_t n);
-void gets_input(char **buff, int *size, int *buffer_size, int source);
-void gets_command(char *str, char **c_command, int *cmd_size);
+char *_strcat(char *s1, char *s2);
+void *_memcpy(char *copy_to, const char *copy_from, size_t n);
+void get_input(char **buff, int *size, int *buffer_size, int source);
+void getc_command(char *str, char **c_command, int *cmd_size);
 char *gets_path(char *envp[]);
 char check_many_comm(char *str);
 void add_args(char ***arguments_array, char *argument);
-void hand_comm(char *command);
+void handle_comm(char *command);
 int execute_comm(char *path, char **args);
 char *find_paths(char *path, char *input);
 int handle_execu(char *c_path, char **argument);
@@ -64,11 +64,11 @@ void buffers(char **all_str, char **c_command, int state);
 int zero_text(char *str);
 int delete_read_spaces(char *str);
 void _free(void **ptr);
-char ***_envit(char **envp, int state);
+char ***_enviornment(char **envp, int state);
 int _states(int c_state);
 char *replaceTxtInd(char **str1, char *str2,
 int start_ind, int end_ind);
-int files_size(char *fname);
+int Fsize(char *fname);
 int lst_space(char *str);
 char **_alias(char *alias_arg, int state);
 int hand_alias(char **arguments);
