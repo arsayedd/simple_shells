@@ -1,6 +1,5 @@
-#ifndef SHELL_H
-#define SHELL_H
-
+#ifndef main_h
+#define main_h
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -9,18 +8,14 @@
 #include <errno.h>
 #include <stdarg.h>
 #include <fcntl.h>
-
 #define BUFFER_SIZE 255
 #define GET_STATE -1024
-
 #define ENV_PTR _envit(NULL, 1)
 #define ENV (*_envit(NULL, 1))
 #define ALIAS_LIST _alias(NULL, 1)
 #define STATE _state(GET_STATE)
 #define FREE(a) (_free((void *)&(a)))
-
 extern char **envi;
-
 int *_stchr(const char *str, int c);
 char *_strttok(char *str, const char *delimiters);
 char *_strttok2(char *str, const char *delimiters);
@@ -86,7 +81,7 @@ void print(int fd, ...);
 void *_malloc(unsigned int size);
 int _read(int fd, char *str, int str_size);
 void remove_read_spaces_hlp(char *str, int str_size);
-void get_command_helper(char *str, char **c_command,
+void gets_comm_help(char *str, char **c_command,
 int *cmd_size, int *i, int *j);
 void edit_comm_hlp(char **str_ptr, char **str, char *temp, int *index);
 int hand_comm_hlp(char *first_segment, char **arguments, char c);
